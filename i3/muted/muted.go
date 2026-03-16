@@ -37,7 +37,7 @@ func main() {
 	rmsRegex := regexp.MustCompile(`RMS\s+amplitude:\s+([0-9.]+)`)
 
 	for {
-		// Record 0.2s into RAM
+		// Record 0.2s
 		exec.Command("timeout", "0.2", "arecord", "-f", "cd", "-q", "/dev/shm/mic_test.wav").Run()
 
 		// Run sox stat
