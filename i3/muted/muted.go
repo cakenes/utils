@@ -7,7 +7,6 @@ import (
 	"os"
 	"os/exec"
 	"regexp"
-	"strconv"
 	"strings"
 	"time"
 )
@@ -17,22 +16,9 @@ func writeState(state string) {
 }
 
 func main() {
-	args := os.Args[1:2]
-
 	lowThreshold := 0.00003
-	highThreshold := 0.00010
+	highThreshold := 0.00005
 	state := "Unknown"
-
-	if len(args) > 0 {
-		if value, err := strconv.ParseFloat(args[0], 64); err == nil {
-			lowThreshold = value
-		}
-	}
-	if len(args) > 1 {
-		if value, err := strconv.ParseFloat(args[1], 64); err == nil {
-			highThreshold = value
-		}
-	}
 
 	rmsRegex := regexp.MustCompile(`RMS\s+amplitude:\s+([0-9.]+)`)
 
