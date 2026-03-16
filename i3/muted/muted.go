@@ -12,12 +12,11 @@ import (
 )
 
 func writeState(state string) {
-    // Always write a clean, single word
     os.WriteFile("/dev/shm/mic_state", []byte(state+"\n"), 0644)
 }
 
 func main() {
-    lowThreshold := 0.00005
+    lowThreshold := 0.00003
     highThreshold := 0.00020
     state := "unknown"
 
