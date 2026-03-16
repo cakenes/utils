@@ -26,12 +26,12 @@ func main() {
 		dir = cwd
 	}
 
-    scanDir, err := filepath.Abs(dir)
-    if err != nil {
-        fmt.Printf("Error getting absolute path: %v\n", err)
-        return
-    }
-	
+	scanDir, err := filepath.Abs(dir)
+	if err != nil {
+		fmt.Printf("Error getting absolute path: %v\n", err)
+		return
+	}
+
 	// Step 1: Find all .module.css files and extract classes
 	err = filepath.WalkDir(scanDir, func(path string, d fs.DirEntry, err error) error {
 		if err != nil {
@@ -149,14 +149,14 @@ func checkTSX(path, projectRoot string) {
 		// Handle alias or relative path, assuming @/ maps to src/
 		if strings.HasPrefix(importPath, "@") {
 			cleanImport := strings.TrimPrefix(importPath, "@")
-            cleanImport = strings.TrimPrefix(cleanImport, "/")
+			cleanImport = strings.TrimPrefix(cleanImport, "/")
 			cssAbsPath = filepath.Join(projectRoot, "src", cleanImport)
 		} else {
 			// Relative path
 			dir := filepath.Dir(path)
 			cssAbsPath = filepath.Join(dir, importPath)
 		}
-		
+
 		cssAbsPath = filepath.Clean(cssAbsPath)
 
 		if classes, ok := css[cssAbsPath]; ok {
